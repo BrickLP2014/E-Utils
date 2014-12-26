@@ -1,11 +1,11 @@
-E-Utils; An (still in development) addon for Project:E
+E-Utils; A (still in development) addon for Project:E
 ================================================================================
 E-Utils README
 
 Mod informations:
 
 Maintained by: BrickLP2014
-Programmed by: master801
+Programmed by: Master801
 Textures by: BrickLP2014
 
 Please Report Bugs !!!

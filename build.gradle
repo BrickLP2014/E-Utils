@@ -23,7 +23,7 @@ targetCompatibility = "1.7"
 
 group = "eutils.EUtils"//TODO Not sure about this name
 archivesBaseName = "E-Utils"//TODO Not sure about this name
-version = "0.0.0"
+version = project.properties['E-Utils_Version']
 
 minecraft {
     version = "1.7.10-10.13.2.1258"
