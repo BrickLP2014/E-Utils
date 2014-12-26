@@ -23,7 +23,6 @@ public class TileEntityRF2EMC extends TileEmcProducer implements IEnergyReceiver
     public static final int MAX_EMC_STORAGE = 1000000;//We can always change this.
 
     public final EnergyStorage storage;
-    private boolean requestEmc = true;
 
     public TileEntityRF2EMC() {
         super(TileEntityRF2EMC.MAX_EMC_STORAGE);
@@ -33,7 +32,6 @@ public class TileEntityRF2EMC extends TileEmcProducer implements IEnergyReceiver
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
-        requestEmc = nbt.getBoolean("requestEMC");
         NBTTagCompound storageNBT = nbt.getCompoundTag("rfStorage");
         if (storageNBT != null) {
             storage.readFromNBT(storageNBT);
@@ -45,7 +43,6 @@ public class TileEntityRF2EMC extends TileEmcProducer implements IEnergyReceiver
     @Override
     public void writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
-        nbt.setBoolean("requestEMC", requestEmc);
         NBTTagCompound storageNBT = new NBTTagCompound();
         storage.writeToNBT(storageNBT);
     }
@@ -66,12 +63,11 @@ public class TileEntityRF2EMC extends TileEmcProducer implements IEnergyReceiver
                 return;
             }
             extractedEnergy = storage.extractEnergy(TileEntityRF2EMC.MAX_RF_EXTRACT_RATE, false);//The amount of RF this has taken from this machine (storage).
-            int emc = TileEntityRF2EMC.convertRFToEMC(extractedEnergy, false);
+            int emc = TileEntityRF2EMC.convertRFToEMC(extractedEnergy);
             if (emc <= 0) {
                 return;
             }
             addEmc(emc);
-            removeEmc();
         }
     }
 
@@ -84,12 +80,8 @@ public class TileEntityRF2EMC extends TileEmcProducer implements IEnergyReceiver
     }
 
     @Override
-    public boolean isRequestingEmc() {
-        return requestEmc;
-    }
-
-    public void shouldRequestEmc(boolean should) {
-        requestEmc = should;
+    public final boolean isRequestingEmc() {
+        return false;//Returns false since we do not ever want to consume emc.
     }
 
     @Override
@@ -116,8 +108,13 @@ public class TileEntityRF2EMC extends TileEmcProducer implements IEnergyReceiver
      * Ex: 10 RF = 5 EMC
      * / 2
      */
-    public static int convertRFToEMC(int rf, boolean simulate) {
-        return 0;
+    public static int convertRFToEMC(int rf) {
+        Object convertedEMC = rf / 2;
+        if (!(convertedEMC instanceof Integer)) {
+            LoggerHelper.addAdvancedMessageToLogger(EUtils.instance, LoggerEnum.WARN, "The amount of converted EMC is not valid (not an instance of Integer)!");
+            return 0;
+        }
+        return (Integer)convertedEMC;
     }
 
 }

@@ -14,8 +14,9 @@ public final class TileEntityInfiniteEMC extends TileEmcProducer {
 
     @Override
     public void updateEntity() {//Exploiting a bug in the code.
-        addEmc(-getStoredEmc());//
-        addEmc(-1);
+        addEmc(-getStoredEmc());//Sets the stored emc to zero.
+        addEmc(-1);//Adds a negative one to the stored emc. AKA this is where the magic happens.
+        //The "addEMC" code checks if the emc stored is either either bigger than the max capacity, and/or less than zero (bug! should be else if statement), then sets the stored amount to the max capacity.
     }
 
     @Override
