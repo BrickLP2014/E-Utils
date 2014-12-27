@@ -5,7 +5,6 @@ import core.helpers.TextureHelper.TextureUsageInfo;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import eutils.common.inventory.ContainerEMCItemRecharger;
-import eutils.common.resources.EResources;
 
 /**
  * Created by Master801 on 12/27/2014 at 12:09 PM.
@@ -20,7 +19,8 @@ public class GuiContainerEMCItemRecharger extends GuiContainerCoreBase<Container
 
     @Override
     protected TextureUsageInfo getTextureInfo() {
-        return new TextureUsageInfo(true, EResources.E_UTILS_MOD_ID + ":" + "textures/gui/EMCItemRecharger.png");
+//        return new TextureUsageInfo(true, EResources.E_UTILS_MOD_ID + ":" + "textures/gui/EMCItemRecharger.png");
+        return new TextureUsageInfo(false, "/assets/e-utils/textures/gui/EMCItemRecharger.png");
     }
 
     @Override

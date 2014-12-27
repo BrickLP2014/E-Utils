@@ -122,8 +122,7 @@ public class TileEntityEMCItemRecharger extends TileEmc implements IActivate, IG
 
     @Override
     public boolean isItemValidForSlot(int slot, ItemStack stack) {
-//        return stack != null && stack.getItem() instanceof IItemCharge;//FIXME There's no flexible api that allows me to tell if the item has a max emc value or not.
-        return stack != null && stack.getItem().equals(ObjHandler.kleinStars);
+        return stack != null && !(stack.getItem() instanceof IItemCharge);
     }
 
     public byte getTier() {
@@ -147,10 +146,9 @@ public class TileEntityEMCItemRecharger extends TileEmc implements IActivate, IG
 
     private void checkAndMoveUnchargedItemsToChargeSlots(int slot) {
         ItemStack stack = inventory[slot];
-//        if (stack != null && stack.getItem() instanceof IItemCharge) {//FIXME There's no flexible api that allows me to tell if the item has a max emc value or not.
+//        if (stack != null && stack.getItem() instanceof NULL) {//FIXME There's no flexible api that allows me to tell if the item has a max emc value or not.
         if (stack != null && stack.getItem().equals(ObjHandler.kleinStars)) {
-            IItemCharge chargeItem = (IItemCharge)stack.getItem();
-            if (chargeItem.getCharge(stack) < Utils.getKleinStarMaxEmc(stack)) {
+            if (ItemPE.getEmc(stack) < Utils.getKleinStarMaxEmc(stack)) {
                 int availableChargeSlot = -1;
                 for(int i = 0; i < (getTier() + 1); i++) {
                     i += 16;
@@ -178,10 +176,9 @@ public class TileEntityEMCItemRecharger extends TileEmc implements IActivate, IG
 
     private void checkAndMoveChargingItemToCharged(int slot) {
         ItemStack stack = inventory[slot];
-//        if (stack != null && stack.getItem() instanceof IItemCharge) {//FIXME There's no flexible api that allows me to tell if the item has a max emc value or not.
+//        if (stack != null && stack.getItem() instanceof NULL) {//FIXME There's no flexible api that allows me to tell if the item has a max emc value or not.
         if (stack != null && stack.getItem().equals(ObjHandler.kleinStars)) {
-            IItemCharge chargeItem = (IItemCharge)stack.getItem();
-            if (chargeItem.getCharge(stack) == Utils.getKleinStarMaxEmc(stack)) {
+            if (ItemPE.getEmc(stack) == Utils.getKleinStarMaxEmc(stack)) {
                 int availableChargedSlot = -1;
                 for(int i = 0; i < 8; i++) {
                     i += 8;
@@ -222,17 +219,16 @@ public class TileEntityEMCItemRecharger extends TileEmc implements IActivate, IG
         if (stack == null) {
             return;
         }
-//        if (stack.getItem() instanceof IItemCharge) {//FIXME No flexible api for max emc.
+//        if (stack.getItem() instanceof NULL) {//FIXME No flexible api for max emc.
         if (stack.getItem().equals(ObjHandler.kleinStars)) {
-            IItemCharge itemCharge = (IItemCharge)stack.getItem();
             int maxEMC = Utils.getKleinStarMaxEmc(stack);
-            if (itemCharge.getCharge(stack) == maxEMC) {
+            if (ItemPE.getEmc(stack) == maxEMC) {
                 checkAndMoveChargingItemToCharged(slot);
                 return;
             }
             ItemPE.addEmc(stack, emcTransfer);
             removeEmc(emcTransfer);
-            if (itemCharge.getCharge(stack) == maxEMC) {
+            if (ItemPE.getEmc(stack) == maxEMC) {
                 checkAndMoveChargingItemToCharged(slot);
             }
         }

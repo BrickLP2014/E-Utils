@@ -18,18 +18,8 @@ public class ContainerEMCItemRecharger extends ContainerCoreBase<TileEntityEMCIt
 
     @Override
     protected void addSlots(IInventory inventory) {
-        //Discharge slots
-        for (int inputSlotRow = 0; inputSlotRow < 4; inputSlotRow++) {
-            for(int inputSlotColumn = 0; inputSlotColumn < 2; inputSlotColumn++) {
-                addSlotToContainer(new Slot(inventory, inputSlotRow * inputSlotColumn, (inputSlotRow * 18) + 5, (inputSlotColumn * 18) + 30));
-            }
-        }
-        //Charge slots
-        for (int inputSlotRow = 0; inputSlotRow < 4; inputSlotRow++) {
-            for(int inputSlotColumn = 0; inputSlotColumn < 2; inputSlotColumn++) {
-                addSlotToContainer(new Slot(inventory, (inputSlotRow * inputSlotColumn) + 8, (inputSlotRow * 18) + 101, (inputSlotColumn * 18) + 30));
-            }
-        }
+        addDefaultSlotsToContainer(inventory, 0, 0);//Discharge slots
+        addDefaultSlotsToContainer(inventory, 8, 96);//Charge slots
         switch(getIInventory().getTier()) {
             case 0:
                 addSlotToContainer(new Slot(inventory, 16, 80, 39));//Charging Slot 1
@@ -44,6 +34,17 @@ public class ContainerEMCItemRecharger extends ContainerCoreBase<TileEntityEMCIt
                 addSlotToContainer(new Slot(inventory, 18, 80, 57));//Charging Slot 3
                 break;
         }
+    }
+
+    private void addDefaultSlotsToContainer(IInventory inventory, int startSlotNumber, int startingXPoint) {
+        addSlotToContainer(new Slot(inventory, startSlotNumber, 5 + startingXPoint, 30));
+        addSlotToContainer(new Slot(inventory, startSlotNumber + 1, 22 + startingXPoint, 30));
+        addSlotToContainer(new Slot(inventory, startSlotNumber + 2, 41 + startingXPoint, 30));
+        addSlotToContainer(new Slot(inventory, startSlotNumber + 3, 59 + startingXPoint, 30));
+        addSlotToContainer(new Slot(inventory, startSlotNumber + 4, 5 + startingXPoint, 48));
+        addSlotToContainer(new Slot(inventory, startSlotNumber + 5, 22 + startingXPoint, 48));
+        addSlotToContainer(new Slot(inventory, startSlotNumber + 6, 41 + startingXPoint, 48));
+        addSlotToContainer(new Slot(inventory, startSlotNumber + 7, 59 + startingXPoint, 48));
     }
 
 }
