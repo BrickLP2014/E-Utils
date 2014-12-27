@@ -28,12 +28,12 @@ public final class EResources {
     public static final BlockCoreBase BLOCK_INFINITE_EMC = new BlockInfiniteEMC();
     public static final BlockCoreBase BLOCK_EMC_STORAGE = new BlockEMCStorage();
 
-    public static final CreativeTabs E_UTILS_CREATIVE_TAB = new CreativeTabs("e-utils.name") {
+    private static final CreativeTabs E_UTILS_CREATIVE_TAB = new CreativeTabs("e-utils.name") {
 
         @Override
         @SideOnly(Side.CLIENT)
         public Item getTabIconItem() {
-            return EResources.getDarkMatterItem((byte)1).getItem();
+            return EResources.getRedMatterItem(1).getItem();
         }
 
     };
@@ -51,7 +51,11 @@ public final class EResources {
     }
 
     public static ItemStack getRedMatterItem(int stackSize) {
-        return new ItemStack(ObjHandler.matter, stackSize, 0);
+        return new ItemStack(ObjHandler.matter, stackSize, 1);
+    }
+
+    public static CreativeTabs getEUtilsCreativeTab() {
+        return EResources.E_UTILS_CREATIVE_TAB;
     }
 
 }

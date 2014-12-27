@@ -7,7 +7,11 @@ import eutils.common.resources.EResources;
 import eutils.tileentity.TileEntityEMCStorage;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Master801 on 12/26/2014 at 11:42 PM.
@@ -20,22 +24,18 @@ public class BlockEMCStorage extends BlockCoreBase {
 
     public BlockEMCStorage() {
         super(Material.iron, true);
-        setCreativeTab(EResources.E_UTILS_CREATIVE_TAB);
+        setCreativeTab(EResources.getEUtilsCreativeTab());
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     protected void registerIcon(TextureMap map) {
+        blockIcon = map.registerIcon("projecte:dm");//TODO
     }
 
     @Override
     public String getAdjustedUnlocalizedName() {
         return null;
-    }
-
-    @Override
-    public int getAmountOfSubtypes() {
-        return 3;
     }
 
     @Override
@@ -50,6 +50,16 @@ public class BlockEMCStorage extends BlockCoreBase {
             default:
                 return null;
         }
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    protected List<ItemStack> addBlocksToCreativeTab() {
+        final List<ItemStack> list = new ArrayList<ItemStack>();
+        for(int i = 0; i < 3; i++) {
+            list.add(new ItemStack(this, 1, i));
+        }
+        return list;
     }
 
 }

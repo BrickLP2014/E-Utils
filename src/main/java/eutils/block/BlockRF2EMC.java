@@ -23,13 +23,13 @@ public final class BlockRF2EMC extends BlockCoreBase {
 
     public BlockRF2EMC() {
         super(Material.iron, true);
-        setCreativeTab(EResources.E_UTILS_CREATIVE_TAB);
+        setCreativeTab(EResources.getEUtilsCreativeTab());
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     protected void registerIcon(TextureMap map) {
-        blockIcon = map.registerIcon(EResources.E_UTILS_MOD_ID + ":" + "RF2EMC");
+        blockIcon = map.registerIcon(EResources.E_UTILS_MOD_ID + ":" + "RF2EMC");//TODO
     }
 
     @Override

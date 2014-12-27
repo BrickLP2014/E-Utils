@@ -52,7 +52,6 @@ public class TileEntityEMCStorage extends TileEmcProducer implements IActivate {
                 emcToSend = getStoredEmc();//Send all of the emc at a time.
             }
             sendEmcToRequesting(emcToSend / amountOfReceivers);//Sends emc to consumers around itself.
-            sendRelayBonus();//Adds a emc bonus if the consumers around is a relay.
             removeEmc(emcToSend);
         }
     }

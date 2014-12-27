@@ -17,7 +17,7 @@ public final class BlockInfiniteEMC extends BlockCoreBase {
 
     public BlockInfiniteEMC() {
         super(Material.iron, false);
-        setCreativeTab(EResources.E_UTILS_CREATIVE_TAB);
+        setCreativeTab(EResources.getEUtilsCreativeTab());
     }
 
     @Override
