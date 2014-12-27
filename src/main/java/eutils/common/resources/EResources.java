@@ -1,8 +1,10 @@
 package eutils.common.resources;
 
+import core.block.BlockCoreBase;
 import core.common.resources.CoreResources;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import eutils.block.BlockInfiniteEMC;
 import moze_intel.projecte.PECore;
 import moze_intel.projecte.gameObjs.ObjHandler;
 import net.minecraft.creativetab.CreativeTabs;
@@ -21,6 +23,9 @@ public final class EResources {
     public static final String E_UTILS_DEPENDENCIES = "required-after:" + CoreResources.CORE_MODID + "; required-after:" + PECore.MODID + "; after:CoFHCore";
     public static final String E_UTILS_PROXY_SERVER = "eutils.proxies.EClientProxy";
     public static final String E_UTILS_PROXY_CLIENT = "eutils.proxies.EServerProxy";
+
+    public static final BlockCoreBase BLOCK_INFINITE_EMC = new BlockInfiniteEMC();
+
     public static final CreativeTabs E_UTILS_CREATIVE_TAB = new CreativeTabs("e-utils") {
 
         @Override
@@ -31,19 +36,19 @@ public final class EResources {
 
     };
 
-    public static ItemStack getDarkMatterBlock(byte stackSize) {
+    public static ItemStack getDarkMatterBlock(int stackSize) {
         return new ItemStack(ObjHandler.matterBlock, stackSize, 0);
     }
 
-    public static ItemStack getRedMatterBlock(byte stackSize) {
+    public static ItemStack getRedMatterBlock(int stackSize) {
         return new ItemStack(ObjHandler.matterBlock, stackSize, 1);
     }
 
-    public static ItemStack getDarkMatterItem(byte stackSize) {
+    public static ItemStack getDarkMatterItem(int stackSize) {
         return new ItemStack(ObjHandler.matter, stackSize, 0);
     }
 
-    public static ItemStack getRedMatterItem(byte stackSize) {
+    public static ItemStack getRedMatterItem(int stackSize) {
         return new ItemStack(ObjHandler.matter, stackSize, 0);
     }
 

@@ -17,11 +17,14 @@ public final class TileEntityInfiniteEMC extends TileEmcProducer {
         addEmc(-getStoredEmc());//Sets the stored emc to zero.
         addEmc(-1);//Adds a negative one to the stored emc. AKA this is where the magic happens.
         //The "addEMC" code checks if the emc stored is either either bigger than the max capacity, and/or less than zero (bug! should be else if statement), then sets the stored amount to the max capacity.
+        checkSurroundingBlocks(false);
+        sendEmcToRequesting(getStoredEmc());//Sends emc to consumers around itself.
+        sendRelayBonus();//Adds a emc bonus if the consumers around itself is a relay.
     }
 
     @Override
     public boolean isRequestingEmc() {
-        return true;
+        return false;//Returns false since we do not ever want to consume emc.
     }
 
 }
