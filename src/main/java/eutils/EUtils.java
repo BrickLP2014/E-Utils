@@ -13,6 +13,8 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import eutils.common.resources.EResources;
 import eutils.integration.IntegrationCoFH;
+import eutils.itemblock.ItemBlockEMCStorage;
+import eutils.tileentity.TileEntityEMCStorage;
 import eutils.tileentity.TileEntityInfiniteEMC;
 
 /**
@@ -32,9 +34,11 @@ public final class EUtils implements IMod {
     public static void preInit(FMLPreInitializationEvent event) {
         ModHelper.addChildMod(EUtils.class);//Should always be done first.
         RegistryHelper.registerModIntegrationHandlers(new IntegrationCoFH());//Always register the mod integration handlers before we post events to it.
-        ProxyHelper.addProxyToMapping(EUtils.proxy);
         RegistryHelper.registerTileEntity(TileEntityInfiniteEMC.class, "infiniteEMC");
+        RegistryHelper.registerTileEntity(TileEntityEMCStorage.class, "emcStorage");
         RegistryHelper.registerBlock(EResources.BLOCK_INFINITE_EMC, "infiniteEMC");
+        RegistryHelper.registerBlock(EResources.BLOCK_EMC_STORAGE, ItemBlockEMCStorage.class, "emcStorage");
+        ProxyHelper.addProxyToMapping(EUtils.proxy);
         RegistryHelper.postModEventToIntegrationHandlers(EUtils.instance, event);//Posts the mod integration handlers after the proxy is added.
     }
 

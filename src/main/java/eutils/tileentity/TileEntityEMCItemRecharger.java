@@ -14,7 +14,7 @@ import net.minecraftforge.common.util.ForgeDirection;
  * Created by Master801 on 12/26/2014 at 9:32 PM.
  * @author Master801
  */
-public class TileEntityEMCItemRecharger extends TileEmc implements ISidedInventory {
+public class TileEntityEMCItemRecharger extends TileEmc implements ISidedInventory {//W.I.P.!
 
     public static final int MAX_EMC_STORAGE = 30000000;//TODO Another made-up number, hopefully BrickLP2014 can make up better numbers.
 

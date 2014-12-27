@@ -6,6 +6,7 @@ import core.api.tileentity.IActivate;
 import core.common.resources.CoreEnums.LoggerEnum;
 import core.helpers.LoggerHelper;
 import core.helpers.PlayerHelper;
+import core.helpers.RandomHelper;
 import eutils.EUtils;
 import moze_intel.projecte.gameObjs.tiles.TileEmcProducer;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,18 +19,13 @@ import net.minecraftforge.common.util.ForgeDirection;
  */
 public class TileEntityRF2EMC extends TileEmcProducer implements IEnergyReceiver, IActivate {
 
-    public static final int MAX_RF_STORAGE = 10000;
-    public static final int MAX_RF_EXTRACT_RATE = 500;
-    public static final int MAX_RF_RECEIVE_RATE = 1000;
-
-    public static final int MAX_EMC_STORAGE = 1000000;//We can always change this.
-    public static final int MAX_EMC_EXTRACT_RATE = 50;//TODO I made this number up, hopefully BrickLP2014 can make up a better one than this.
-
     public final EnergyStorage storage;
+    private final int extractRate;
 
-    public TileEntityRF2EMC() {
-        super(TileEntityRF2EMC.MAX_EMC_STORAGE);
-        storage = new EnergyStorage(TileEntityRF2EMC.MAX_RF_STORAGE, TileEntityRF2EMC.MAX_RF_RECEIVE_RATE, TileEntityRF2EMC.MAX_RF_EXTRACT_RATE);
+    public TileEntityRF2EMC(int rfStorage, int rfReceive, int rfExtract, int maxAmount, int extractRate) {
+        super(maxAmount);
+        storage = new EnergyStorage(rfStorage, rfReceive, rfExtract);
+        this.extractRate = extractRate;
     }
 
     @Override
@@ -63,11 +59,11 @@ public class TileEntityRF2EMC extends TileEmcProducer implements IEnergyReceiver
             return;//Stop trying to convert power if stored rf is equal to or less than zero and/or if the currently stored emc is larger than the machine can store.
         }
         if (storage.getEnergyStored() > 0 && getStoredEmc() < getMaxEmc()) {//Checks if the rf stored is bigger than zero and amount of stored emc is less than the max capacity.
-            int extractedEnergy = storage.extractEnergy(TileEntityRF2EMC.MAX_RF_EXTRACT_RATE, true);//The amount of RF this should take from this machine. (This is a simulation!)
+            int extractedEnergy = storage.extractEnergy(storage.getMaxExtract(), true);//The amount of RF this should take from this machine. (This is a simulation!)
             if (extractedEnergy <= 0) {
                 return;
             }
-            extractedEnergy = storage.extractEnergy(TileEntityRF2EMC.MAX_RF_EXTRACT_RATE, false);//The amount of RF this has taken from this machine (storage).
+            extractedEnergy = storage.extractEnergy(storage.getMaxExtract(), false);//The amount of RF this has taken from this machine (storage).
             int emc = TileEntityRF2EMC.convertRFToEMC(extractedEnergy);
             if (emc <= 0) {
                 return;
@@ -84,13 +80,13 @@ public class TileEntityRF2EMC extends TileEmcProducer implements IEnergyReceiver
         int amountOfReceivers = super.getNumRequesting();
         if (amountOfReceivers > 0) {
             double emcToSend;/** !!DISCLAIMER!! Method was ripped out of {@link moze_intel.projecte.gameObjs.tiles.CollectorMK1Tile.updateEMC()} and modified to my preferences and needs. -Master801*/
-            if (getStoredEmc() <= TileEntityRF2EMC.MAX_EMC_EXTRACT_RATE) {
-                emcToSend = TileEntityRF2EMC.MAX_EMC_EXTRACT_RATE;//Send only the allowed rate at a time.
+            if (getStoredEmc() <= extractRate) {
+                emcToSend = extractRate;//Send only the allowed rate at a time.
             } else {
                 emcToSend = getStoredEmc();//Send all of the emc at a time.
             }
             sendEmcToRequesting(emcToSend / amountOfReceivers);//Sends emc to consumers around itself.
-            sendRelayBonus();//Adds a emc bonus if the consumers around itself is a relay.
+            sendRelayBonus();//Adds a emc bonus if the consumers around is a relay.
             removeEmc(emcToSend);
         }
     }
@@ -150,7 +146,7 @@ public class TileEntityRF2EMC extends TileEmcProducer implements IEnergyReceiver
     @Override
     public boolean onActivated(EntityPlayer player, ForgeDirection side) {
         PlayerHelper.addAdvancedChatMessage(worldObj, player, "RF: %d/%d", storage.getEnergyStored(), storage.getMaxEnergyStored());
-        PlayerHelper.addAdvancedChatMessage(worldObj, player, "EMC: %d/%d", getStoredEmc(), getMaxEmc());
+        PlayerHelper.addAdvancedChatMessage(worldObj, player, "EMC: %d/%d", RandomHelper.convertDoubleToInteger(getStoredEmc()).intValue(), getMaxEmc());
         return true;
     }
 

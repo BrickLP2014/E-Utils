@@ -23,7 +23,7 @@ public final class TileEntityInfiniteEMC extends TileEmcProducer {
     }
 
     @Override
-    public boolean isRequestingEmc() {
+    public final boolean isRequestingEmc() {
         return false;//Returns false since we do not ever want to consume emc.
     }
 

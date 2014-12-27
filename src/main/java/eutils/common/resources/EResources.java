@@ -4,6 +4,7 @@ import core.block.BlockCoreBase;
 import core.common.resources.CoreResources;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import eutils.block.BlockEMCStorage;
 import eutils.block.BlockInfiniteEMC;
 import moze_intel.projecte.PECore;
 import moze_intel.projecte.gameObjs.ObjHandler;
@@ -25,6 +26,7 @@ public final class EResources {
     public static final String E_UTILS_PROXY_CLIENT = "eutils.proxies.EServerProxy";
 
     public static final BlockCoreBase BLOCK_INFINITE_EMC = new BlockInfiniteEMC();
+    public static final BlockCoreBase BLOCK_EMC_STORAGE = new BlockEMCStorage();
 
     public static final CreativeTabs E_UTILS_CREATIVE_TAB = new CreativeTabs("e-utils") {
 
