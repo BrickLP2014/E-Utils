@@ -15,15 +15,15 @@ import net.minecraft.tileentity.TileEntity;
  */
 public final class BlockRF2EMC extends BlockCoreBase {
 
-    public static final int MAX_EMC_STORAGE_0 = 1000000, MAX_EMC_STORAGE_1 = 2000000, MAX_EMC_STORAGE_2 = 2000000, MAX_EMC_STORAGE_3 = 2000000, MAX_EMC_STORAGE_4 = 2000000;//We can always change this.//TODO 1-4 are made up numbers
-    public static final int MAX_EMC_EXTRACT_RATE_0 = 175, MAX_EMC_EXTRACT_RATE_1 = 500, MAX_EMC_EXTRACT_RATE_2 = 1000, MAX_EMC_EXTRACT_RATE_3 = 2000, MAX_EMC_EXTRACT_RATE_4 = 3000;//TODO I made all these numbers up, hopefully BrickLP2014 can make up a better ones than these.
-    public static final int MAX_RF_STORAGE_0 = 10000, MAX_RF_STORAGE_1 = 20000, MAX_RF_STORAGE_2 = 30000, MAX_RF_STORAGE_3 = 40000, MAX_RF_STORAGE_4 = 50000;//TODO 1-4 are made up numbers
-    public static final int MAX_RF_EXTRACT_RATE_0 = 500, MAX_RF_EXTRACT_RATE_1 = 1000, MAX_RF_EXTRACT_RATE_2 = 1500, MAX_RF_EXTRACT_RATE_3 = 2000, MAX_RF_EXTRACT_RATE_4 = 2500, MAX_RF_EXTRACT_RATE_5 = 3000;//TODO 1-4 are made up numbers
-    public static final int MAX_RF_RECEIVE_RATE_0 = 1000, MAX_RF_RECEIVE_RATE_1 = 2000, MAX_RF_RECEIVE_RATE_2 = 3000, MAX_RF_RECEIVE_RATE_3 = 4000, MAX_RF_RECEIVE_RATE_4 = 5000;//TODO 1-4 are made up numbers
+    public static final int[] MAX_EMC_STORAGES = new int[] { 1000000, 2000000, 3000000, 4000000, 5000000 };//We can always change this.//TODO 1-4 are made up numbers
+    public static final int[] MAX_EMC_EXTRACT_RATES = new int[] { 175, 500, 1000, 2000, 3000 };//TODO I made all these numbers up, hopefully BrickLP2014 can make up a better ones than these.
+    public static final int[] MAX_RF_STORAGES = new int[] { 10000, 20000, 30000, 40000, 50000 };//TODO 1-4 are made up numbers
+    public static final int[] MAX_RF_EXTRACT_RATES = new int[] { 500, 1000, 1500, 2000, 2500 };//TODO 1-4 are made up numbers
+    public static final int[] MAX_RF_RECEIVE_RATES = new int[] { 1000, 2000, 3000, 4000, 5000 };//TODO 1-4 are made up numbers
 
     public BlockRF2EMC() {
         super(Material.iron, true);
-        setCreativeTab(EResources.getEUtilsCreativeTab());
+        setCreativeTab(EResources.E_UTILS_CREATIVE_TAB);
     }
 
     @Override
@@ -39,42 +39,7 @@ public final class BlockRF2EMC extends BlockCoreBase {
 
     @Override
     public TileEntity createTileEntity(int metadata) {
-        int rfStorage = BlockRF2EMC.MAX_RF_STORAGE_0;
-        int rfExtraction = BlockRF2EMC.MAX_RF_EXTRACT_RATE_0;
-        int rfReceive = BlockRF2EMC.MAX_RF_RECEIVE_RATE_0;
-        int storage = BlockRF2EMC.MAX_EMC_STORAGE_0;
-        int extraction = BlockRF2EMC.MAX_EMC_EXTRACT_RATE_0;
-        switch(metadata) {
-            case 1:
-                storage = BlockRF2EMC.MAX_EMC_STORAGE_1;
-                rfExtraction = BlockRF2EMC.MAX_RF_EXTRACT_RATE_1;
-                rfReceive = BlockRF2EMC.MAX_RF_RECEIVE_RATE_1;
-                extraction = BlockRF2EMC.MAX_EMC_EXTRACT_RATE_1;
-                rfStorage = BlockRF2EMC.MAX_RF_STORAGE_1;
-                break;
-            case 2:
-                storage = BlockRF2EMC.MAX_EMC_STORAGE_2;
-                rfExtraction = BlockRF2EMC.MAX_RF_EXTRACT_RATE_2;
-                rfReceive = BlockRF2EMC.MAX_RF_RECEIVE_RATE_2;
-                extraction = BlockRF2EMC.MAX_EMC_EXTRACT_RATE_2;
-                rfStorage = BlockRF2EMC.MAX_RF_STORAGE_2;
-                break;
-            case 3:
-                storage = BlockRF2EMC.MAX_EMC_STORAGE_3;
-                rfExtraction = BlockRF2EMC.MAX_RF_EXTRACT_RATE_3;
-                rfReceive = BlockRF2EMC.MAX_RF_RECEIVE_RATE_3;
-                extraction = BlockRF2EMC.MAX_EMC_EXTRACT_RATE_3;
-                rfStorage = BlockRF2EMC.MAX_RF_STORAGE_3;
-                break;
-            case 4:
-                storage = BlockRF2EMC.MAX_EMC_STORAGE_4;
-                rfExtraction = BlockRF2EMC.MAX_RF_EXTRACT_RATE_4;
-                rfReceive = BlockRF2EMC.MAX_RF_RECEIVE_RATE_4;
-                extraction = BlockRF2EMC.MAX_EMC_EXTRACT_RATE_4;
-                rfStorage = BlockRF2EMC.MAX_RF_STORAGE_4;
-                break;
-        }
-        return new TileEntityRF2EMC(rfStorage, rfExtraction, rfReceive, storage, extraction);
+        return new TileEntityRF2EMC(BlockRF2EMC.MAX_RF_STORAGES[metadata], BlockRF2EMC.MAX_RF_EXTRACT_RATES[metadata], BlockRF2EMC.MAX_RF_RECEIVE_RATES[metadata], BlockRF2EMC.MAX_EMC_STORAGES[metadata], BlockRF2EMC.MAX_EMC_EXTRACT_RATES[metadata]);
     }
 
     @Override

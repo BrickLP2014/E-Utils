@@ -4,6 +4,7 @@ import core.block.BlockCoreBase;
 import core.common.resources.CoreResources;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import eutils.block.BlockEMCItemRecharger;
 import eutils.block.BlockEMCStorage;
 import eutils.block.BlockInfiniteEMC;
 import moze_intel.projecte.PECore;
@@ -27,8 +28,9 @@ public final class EResources {
 
     public static final BlockCoreBase BLOCK_INFINITE_EMC = new BlockInfiniteEMC();
     public static final BlockCoreBase BLOCK_EMC_STORAGE = new BlockEMCStorage();
+    public static final BlockCoreBase BLOCK_EMC_ITEM_RECHARGER = new BlockEMCItemRecharger();
 
-    private static final CreativeTabs E_UTILS_CREATIVE_TAB = new CreativeTabs("e-utils.name") {
+    public static final CreativeTabs E_UTILS_CREATIVE_TAB = new CreativeTabs("e-utils.name") {
 
         @Override
         @SideOnly(Side.CLIENT)
@@ -52,10 +54,6 @@ public final class EResources {
 
     public static ItemStack getRedMatterItem(int stackSize) {
         return new ItemStack(ObjHandler.matter, stackSize, 1);
-    }
-
-    public static CreativeTabs getEUtilsCreativeTab() {
-        return EResources.E_UTILS_CREATIVE_TAB;
     }
 
 }

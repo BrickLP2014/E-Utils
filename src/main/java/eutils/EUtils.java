@@ -16,7 +16,9 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import eutils.common.resources.EResources;
 import eutils.common.resources.EUtilsModMetadata;
 import eutils.integration.IntegrationCoFH;
+import eutils.itemblock.ItemBlockEMCItemRecharger;
 import eutils.itemblock.ItemBlockEMCStorage;
+import eutils.tileentity.TileEntityEMCItemRecharger;
 import eutils.tileentity.TileEntityEMCStorage;
 import eutils.tileentity.TileEntityInfiniteEMC;
 
@@ -43,8 +45,10 @@ public final class EUtils implements IMod {
         RegistryHelper.registerModIntegrationHandlers(new IntegrationCoFH());//Always register the mod integration handlers before we post events to it.
         RegistryHelper.registerTileEntity(TileEntityInfiniteEMC.class, "infiniteEMC");
         RegistryHelper.registerTileEntity(TileEntityEMCStorage.class, "emcStorage");
+        RegistryHelper.registerTileEntity(TileEntityEMCItemRecharger.class, "emcItemRecharger");
         RegistryHelper.registerBlock(EResources.BLOCK_INFINITE_EMC, "infiniteEMC");
         RegistryHelper.registerBlock(EResources.BLOCK_EMC_STORAGE, ItemBlockEMCStorage.class, "emcStorage");
+        RegistryHelper.registerBlock(EResources.BLOCK_EMC_ITEM_RECHARGER, ItemBlockEMCItemRecharger.class, "emcItemRecharger");
         ProxyHelper.addProxyToMapping(EUtils.proxy);
         RegistryHelper.postModEventToIntegrationHandlers(EUtils.instance, event);//Posts the mod integration handlers after the proxy is added.
     }
@@ -52,6 +56,7 @@ public final class EUtils implements IMod {
     @EventHandler
     public static void init(FMLInitializationEvent event) {
         RegistryHelper.postModEventToIntegrationHandlers(EUtils.instance, event);//Always register the mod integration handlers before we post events to it.
+        RegistryHelper.registerGuiHandler(EUtils.instance);
         EUtils.proxy.registerBlockRenderers();
         EUtils.proxy.registerItemRenderers();
         EUtils.proxy.registerTileEntityRenderers();

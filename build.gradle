@@ -21,8 +21,8 @@ apply plugin: 'forge'
 sourceCompatibility = "1.6"
 targetCompatibility = "1.7"
 
-group = "eutils.EUtils"//TODO Not sure about this name
-archivesBaseName = "E-Utils"//TODO Not sure about this name
+group = "eutils.EUtils"
+archivesBaseName = "E-Utils"
 version = project.properties['E-Utils_Version']
 
 minecraft {

@@ -9,7 +9,6 @@ import eutils.EUtils;
 import eutils.block.BlockRF2EMC;
 import eutils.common.resources.EResources;
 import eutils.itemblock.ItemBlockRF2EMC;
-import eutils.tileentity.TileEntityInfiniteEMC;
 import eutils.tileentity.TileEntityRF2EMC;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -28,7 +27,6 @@ public final class IntegrationCoFH implements IModIntegrationHandler {
     @Override
     public void addModBlocksAndItems() {
         RegistryHelper.registerTileEntity(TileEntityRF2EMC.class, "rf2emc");
-        RegistryHelper.registerTileEntity(TileEntityInfiniteEMC.class, "infiniteEMC");
         RegistryHelper.registerBlock(IntegrationCoFH.BLOCK_RF2EMC, ItemBlockRF2EMC.class, "rf2emc");
     }
 
