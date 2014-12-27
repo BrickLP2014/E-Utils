@@ -8,10 +8,13 @@ import core.helpers.RegistryHelper;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
+import cpw.mods.fml.common.Mod.Metadata;
+import cpw.mods.fml.common.ModMetadata;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import eutils.common.resources.EResources;
+import eutils.common.resources.EUtilsModMetadata;
 import eutils.integration.IntegrationCoFH;
 import eutils.itemblock.ItemBlockEMCStorage;
 import eutils.tileentity.TileEntityEMCStorage;
@@ -27,12 +30,16 @@ public final class EUtils implements IMod {
     @Instance(EResources.E_UTILS_MOD_ID)
     public static IMod instance;
 
+    @Metadata(EResources.E_UTILS_MOD_ID)
+    public static ModMetadata metadata;
+
     @SidedProxy(serverSide = EResources.E_UTILS_PROXY_SERVER, clientSide = EResources.E_UTILS_PROXY_CLIENT)
     public static IProxy proxy;
 
     @EventHandler
     public static void preInit(FMLPreInitializationEvent event) {
         ModHelper.addChildMod(EUtils.class);//Should always be done first.
+        ModHelper.handshakeMetadata(EUtils.metadata, EUtilsModMetadata.INSTANCE);
         RegistryHelper.registerModIntegrationHandlers(new IntegrationCoFH());//Always register the mod integration handlers before we post events to it.
         RegistryHelper.registerTileEntity(TileEntityInfiniteEMC.class, "infiniteEMC");
         RegistryHelper.registerTileEntity(TileEntityEMCStorage.class, "emcStorage");

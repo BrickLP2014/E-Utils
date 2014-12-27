@@ -1,0 +1,9 @@
+itemGroup.e-utils.name=E-Utils
+tile.rf2emc.mk0.name=RF2EMC MK 1
+tile.rf2emc.mk1.name=RF2EMC MK 2
+tile.rf2emc.mk2.name=RF2EMC MK 3
+tile.rf2emc.mk3.name=RF2EMC MK 4
+tile.rf2emc.mk4.name=RF2EMC MK 5
+tile.emcStorage.mk0.name=EMC Storage MK 1
+tile.emcStorage.mk1.name=EMC Storage MK 2
+tile.emcStorage.mk2.name=EMC Storage MK 3

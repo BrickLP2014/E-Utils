@@ -28,7 +28,7 @@ public final class EResources {
     public static final BlockCoreBase BLOCK_INFINITE_EMC = new BlockInfiniteEMC();
     public static final BlockCoreBase BLOCK_EMC_STORAGE = new BlockEMCStorage();
 
-    public static final CreativeTabs E_UTILS_CREATIVE_TAB = new CreativeTabs("e-utils") {
+    public static final CreativeTabs E_UTILS_CREATIVE_TAB = new CreativeTabs("e-utils.name") {
 
         @Override
         @SideOnly(Side.CLIENT)

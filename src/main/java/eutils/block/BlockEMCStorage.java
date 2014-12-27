@@ -3,6 +3,7 @@ package eutils.block;
 import core.block.BlockCoreBase;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import eutils.common.resources.EResources;
 import eutils.tileentity.TileEntityEMCStorage;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.TextureMap;
@@ -19,6 +20,7 @@ public class BlockEMCStorage extends BlockCoreBase {
 
     public BlockEMCStorage() {
         super(Material.iron, true);
+        setCreativeTab(EResources.E_UTILS_CREATIVE_TAB);
     }
 
     @Override
