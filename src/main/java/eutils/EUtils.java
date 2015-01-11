@@ -13,11 +13,11 @@ import cpw.mods.fml.common.ModMetadata;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.registry.GameRegistry;
 import eutils.common.resources.EResources;
 import eutils.common.resources.EUtilsModMetadata;
 import eutils.integration.IntegrationCoFH;
-import eutils.itemblock.ItemBlockEMCItemRecharger;
-import eutils.itemblock.ItemBlockEMCStorage;
+import eutils.itemblock.ItemBlockTier;
 import eutils.tileentity.TileEntityEMCItemRecharger;
 import eutils.tileentity.TileEntityEMCStorage;
 import eutils.tileentity.TileEntityInfiniteEMC;
@@ -43,19 +43,19 @@ public final class EUtils implements IMod {
         ModHelper.addChildMod(EUtils.class);//Should always be done first.
         ModHelper.handshakeMetadata(EUtils.metadata, EUtilsModMetadata.INSTANCE);
         RegistryHelper.registerModIntegrationHandlers(new IntegrationCoFH());//Always register the mod integration handlers before we post events to it.
-        RegistryHelper.registerTileEntity(TileEntityInfiniteEMC.class, "infiniteEMC");
-        RegistryHelper.registerTileEntity(TileEntityEMCStorage.class, "emcStorage");
-        RegistryHelper.registerTileEntity(TileEntityEMCItemRecharger.class, "emcItemRecharger");
-        RegistryHelper.registerBlock(EResources.BLOCK_INFINITE_EMC, "infiniteEMC");
-        RegistryHelper.registerBlock(EResources.BLOCK_EMC_STORAGE, ItemBlockEMCStorage.class, "emcStorage");
-        RegistryHelper.registerBlock(EResources.BLOCK_EMC_ITEM_RECHARGER, ItemBlockEMCItemRecharger.class, "emcItemRecharger");
+        GameRegistry.registerTileEntity(TileEntityInfiniteEMC.class, "infiniteEMC");
+        GameRegistry.registerTileEntity(TileEntityEMCStorage.class, "emcStorage");
+        GameRegistry.registerTileEntity(TileEntityEMCItemRecharger.class, "emcItemRecharger");
+        GameRegistry.registerBlock(EResources.BLOCK_INFINITE_EMC, "infiniteEMC");
+        GameRegistry.registerBlock(EResources.BLOCK_EMC_STORAGE, ItemBlockTier.class, "emcStorage", new Object[] { "emcStorage.mk" });
+        GameRegistry.registerBlock(EResources.BLOCK_EMC_ITEM_RECHARGER, ItemBlockTier.class, "emcItemRecharger", new Object[] { "emcItemRecharger.mk" });
         ProxyHelper.addProxyToMapping(EUtils.proxy);
-        RegistryHelper.postModEventToIntegrationHandlers(EUtils.instance, event);//Posts the mod integration handlers after the proxy is added.
+        RegistryHelper.postModEventToIntegrationHandlers(EUtils.instance, event);
     }
 
     @EventHandler
     public static void init(FMLInitializationEvent event) {
-        RegistryHelper.postModEventToIntegrationHandlers(EUtils.instance, event);//Always register the mod integration handlers before we post events to it.
+        RegistryHelper.postModEventToIntegrationHandlers(EUtils.instance, event);
         RegistryHelper.registerGuiHandler(EUtils.instance);
         EUtils.proxy.registerBlockRenderers();
         EUtils.proxy.registerItemRenderers();

@@ -10,9 +10,6 @@ import eutils.block.BlockRF2EMC;
 import eutils.common.resources.EResources;
 import eutils.itemblock.ItemBlockRF2EMC;
 import eutils.tileentity.TileEntityRF2EMC;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
@@ -32,7 +29,7 @@ public final class IntegrationCoFH implements IModIntegrationHandler {
 
     @Override
     public void addModRecipes() {
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(IntegrationCoFH.BLOCK_RF2EMC, 1, 0), "OIO", "IRI", "OIO", 'O', Item.getItemFromBlock(Blocks.obsidian), 'I', Items.iron_ingot, 'R', EResources.getRedMatterBlock(1)));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(IntegrationCoFH.BLOCK_RF2EMC, 1, 0), "OIO", "IRI", "OIO", 'O', "obsidian", 'I', "ingotIron", 'R', EResources.getRedMatterBlock(1)));
     }
 
     @Override
