@@ -21,12 +21,12 @@ apply plugin: 'forge'
 sourceCompatibility = "1.6"
 targetCompatibility = "1.7"
 
-group = "eutils.EUtils"
-archivesBaseName = "E-Utils"
-version = project.properties['E-Utils_Version']
+group = "eutils.EUtils"//TODO Not sure about this name
+archivesBaseName = "E-Utils"//TODO Not sure about this name
+version = "1.0.0"
 
 minecraft {
-    version = "1.7.10-10.13.2.1258"
+    version = project.properties['Forge_Version']
     runDir = "build"
     replace "@VERSION@", project.version
 }

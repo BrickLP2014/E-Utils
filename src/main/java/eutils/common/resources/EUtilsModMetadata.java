@@ -66,8 +66,8 @@ public final class EUtilsModMetadata implements IMetadata {
     }
 
     @Override
-    public String[] getScreenShots() {
-        return new String[0];
+    public List<String> getScreenShots() {
+        return null;
     }
 
     @Override

@@ -10,6 +10,7 @@ import eutils.block.BlockRF2EMC;
 import eutils.common.resources.EResources;
 import eutils.itemblock.ItemBlockRF2EMC;
 import eutils.tileentity.TileEntityRF2EMC;
+import moze_intel.projecte.gameObjs.ObjHandler;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
@@ -30,6 +31,10 @@ public final class IntegrationCoFH implements IModIntegrationHandler {
     @Override
     public void addModRecipes() {
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(IntegrationCoFH.BLOCK_RF2EMC, 1, 0), "OIO", "IRI", "OIO", 'O', "obsidian", 'I', "ingotIron", 'R', EResources.getRedMatterBlock(1)));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(IntegrationCoFH.BLOCK_RF2EMC, 1, 1), "OIO", "IRI", "OIO", 'O', "obsidian", 'I', "ingotIron", 'R', new ItemStack(ObjHandler.matterBlock, 1, 1)));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(IntegrationCoFH.BLOCK_RF2EMC, 1, 2), "OIO", "IRI", "OIO", 'O', "obsidian", 'I', "ingotIron", 'R', ObjHandler.relay));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(IntegrationCoFH.BLOCK_RF2EMC, 1, 3), "OIO", "IRI", "OIO", 'O', "obsidian", 'I', "ingotIron", 'R', ObjHandler.relayMK2));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(IntegrationCoFH.BLOCK_RF2EMC, 1, 4), "OIO", "IRI", "OIO", 'O', "obsidian", 'I', "ingotIron", 'R', ObjHandler.relayMK3));
     }
 
     @Override

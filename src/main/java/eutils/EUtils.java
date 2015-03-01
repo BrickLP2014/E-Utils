@@ -40,7 +40,11 @@ public final class EUtils implements IMod {
 
     @EventHandler
     public static void preInit(FMLPreInitializationEvent event) {
-        ModHelper.addChildMod(EUtils.class);//Should always be done first.
+        try {
+            ModHelper.addChildMod(EUtils.class);//Should always be done first.
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
         ModHelper.handshakeMetadata(EUtils.metadata, EUtilsModMetadata.INSTANCE);
         RegistryHelper.registerModIntegrationHandlers(new IntegrationCoFH());//Always register the mod integration handlers before we post events to it.
         GameRegistry.registerTileEntity(TileEntityInfiniteEMC.class, "infiniteEMC");

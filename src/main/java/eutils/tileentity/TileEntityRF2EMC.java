@@ -135,18 +135,13 @@ public class TileEntityRF2EMC extends TileEmcProducer implements IEnergyReceiver
      * / 2
      */
     public static int convertRFToEMC(int rf) {
-        Object convertedEMC = rf / 2;
-        if (!(convertedEMC instanceof Integer)) {
-            LoggerHelper.addAdvancedMessageToLogger(EUtils.instance, LoggerEnum.WARN, "The amount of converted EMC is not valid (not an instance of Integer)!");
-            return 0;
-        }
-        return (Integer)convertedEMC;
+        return rf / 2;
     }
 
     @Override
     public boolean onActivated(EntityPlayer player, ForgeDirection side) {
-        PlayerHelper.addAdvancedChatMessage(worldObj, player, "RF: %d/%d", storage.getEnergyStored(), storage.getMaxEnergyStored());
-        PlayerHelper.addAdvancedChatMessage(worldObj, player, "EMC: %d/%d", RandomHelper.convertDoubleToInteger(getStoredEmc()).intValue(), getMaxEmc());
+        PlayerHelper.addAdvancedChatMessage(player, "RF: %d/%d", storage.getEnergyStored(), storage.getMaxEnergyStored());
+        PlayerHelper.addAdvancedChatMessage(player, "EMC: %d/%d", RandomHelper.convertDoubleToInteger(getStoredEmc()).intValue(), getMaxEmc());
         return true;
     }
 

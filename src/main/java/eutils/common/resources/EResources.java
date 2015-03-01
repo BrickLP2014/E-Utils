@@ -22,7 +22,7 @@ public final class EResources {
     public static final String E_UTILS_MOD_ID = "E-Utils";
     public static final String E_UTILS_NAME = "E-Utils";
     public static final String E_UTILS_VERSION = "@VERSION@";
-    public static final String E_UTILS_DEPENDENCIES = "required-after:" + CoreResources.CORE_MODID + "; required-after:" + PECore.MODID + "; after:CoFHCore";
+    public static final String E_UTILS_DEPENDENCIES = "required-after:" + CoreResources.CORE_LIBRARY_MOD_ID + "; required-after:" + PECore.MODID + "; after:CoFHCore";
     public static final String E_UTILS_PROXY_SERVER = "eutils.proxies.EClientProxy";
     public static final String E_UTILS_PROXY_CLIENT = "eutils.proxies.EServerProxy";
 

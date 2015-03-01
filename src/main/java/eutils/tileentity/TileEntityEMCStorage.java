@@ -34,7 +34,7 @@ public class TileEntityEMCStorage extends TileEmcProducer implements IActivate {
 
     @Override
     public boolean onActivated(EntityPlayer player, ForgeDirection side) {
-        PlayerHelper.addAdvancedChatMessage(worldObj, player, "EMC: %d/%d", RandomHelper.convertDoubleToInteger(getStoredEmc()), getMaxEmc());
+        PlayerHelper.addAdvancedChatMessage(player, "EMC: %d/%d", RandomHelper.convertDoubleToInteger(getStoredEmc()), getMaxEmc());
         return true;
     }
 
